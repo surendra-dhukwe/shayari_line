@@ -6,12 +6,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+require('dotenv').config();
+
 const db = mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"surendra@123",
-  database:"insta_clone"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
+
+module.exports = db;
 
 /* USERS */
 app.post("/createUser",(req,res)=>{
